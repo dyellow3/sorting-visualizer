@@ -1,7 +1,7 @@
 import { color } from "d3";
 import D3Chart from "./D3Chart";
-// Insertion sort finds the minIndex, then swaps it to the front
-export const InsertionSort = async (data, swapRectangles, colorRectangle, updateIterations) => {
+// Selection sort finds the minIndex, then swaps it to the front
+export const SelectionSort = async (data, swapRectangles, colorRectangle, updateIterations) => {
     let i, j, minIndex;
     for (i = 0; i < (data.length - 1); i++) {
         updateIterations()
@@ -20,6 +20,7 @@ export const InsertionSort = async (data, swapRectangles, colorRectangle, update
         }
         updateIterations()
         await swapRectangles(parseInt(i), parseInt(minIndex))
-        // need a delay after swap rectangles
+        colorRectangle(parseInt(i), "black")
+        await colorRectangle(parseInt(minIndex), "black")
     }
 }
