@@ -3,8 +3,9 @@ import * as d3 from 'd3';
 import { SelectionSort } from './SelectionSort';
 import { MergeSort } from './MergeSort';
 import { Slider, Button, ButtonGroup } from '@mui/material';
-const D3Chart = ({ data }) => {
-  const [size, setSize] = useState(20);
+const D3Chart = () => {
+  const [data, setData] = useState([...Array(10).keys()])
+  const [dataSize, setDataSize] = useState(10);
   const [sortStatus, setSortStatus] = useState(false);
   const [iterations, setIterations] = useState(0);
   const [speed, setSpeed] = useState(0.1)
@@ -14,7 +15,7 @@ const D3Chart = ({ data }) => {
   const height = 400 - margin.top - margin.bottom;
   const barWidth = width / data.length;
   const barHeight = height / data.length;
-  
+
 
   // Handles visualization after two rectangles are swapped
   const updateChart = (index1, index2) => {
@@ -78,6 +79,11 @@ const D3Chart = ({ data }) => {
     }
   }
 
+  const handleDataSizeChange = (event, newValue) => {
+    setDataSize(newValue);
+    setData([...Array(dataSize).keys()])
+  }
+
   const updateIterations = () => {
     setIterations((prevIterations) => prevIterations + 1);
   };
@@ -101,6 +107,7 @@ const D3Chart = ({ data }) => {
   const svgRef = useRef();
   useEffect(() => {
     const svg = d3.select(svgRef.current);
+    svg.selectAll('rect').remove();
     svg
       .selectAll('rect')
       .data(data)
@@ -121,9 +128,18 @@ const D3Chart = ({ data }) => {
         <h1>{iterations}</h1>
       </div>
 
-     
+      <Slider
+        disabled={sortStatus}
+        value={dataSize}
+        valueLabelDisplay="auto"
+        step={1}
+        min={5}
+        max={50}
+        onChange={handleDataSizeChange}
+      />
 
       <Slider
+      disabled={sortStatus}
         value={speed}
         aria-label="Temperature"
         valueLabelDisplay="auto"
@@ -134,8 +150,8 @@ const D3Chart = ({ data }) => {
       />
 
       <ButtonGroup variant="outlined" aria-label="outlined button group">
-        <Button onClick={() => setSort('Merge')} variant={sort === 'Merge' ? 'contained' : 'outlined'}>Merge</Button>
-        <Button onClick={() => setSort('Selection')} variant={sort === 'Selection' ? 'contained' : 'outlined'}>Selection</Button>
+        <Button disabled={sortStatus} onClick={() => setSort('Merge')} variant={sort === 'Merge' ? 'contained' : 'outlined'}>Merge</Button>
+        <Button disabled={sortStatus} onClick={() => setSort('Selection')} variant={sort === 'Selection' ? 'contained' : 'outlined'}>Selection</Button>
       </ButtonGroup>
     </div>
   );
