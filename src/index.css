@@ -1,17 +1,12 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: black;
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: white;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 body {
@@ -20,69 +15,38 @@ body {
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 #root {
   width: 100%;
-  display: flex; 
+  display: grid;
+  grid-template-rows: 100px 1fr;
   justify-content: center;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#chart {
+  display: grid;
   width: 100%;
-}
-
-#container {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-}
-
-#iterationCount {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #sliders {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: min-content;
+  min-width: 200px;
 }
 
-#sliders span{
-  margin-top: 10px;
-}
-#sliders div {
-  margin-top: 20px;
-}
-
-#arrayContainer {
+.Navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-}
-
-#buttonContainer {
-  display: flex;
+  width: 90vw;
   justify-content: space-between;
-  align-items: center;
-  width: 35%;
 }
+
+
 
 @media (prefers-color-scheme: light) {
   :root {

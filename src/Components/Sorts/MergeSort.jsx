@@ -1,4 +1,7 @@
-export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, updateIterations) => {
+// took out update iteations from both
+import { SwapRectangles } from "../Utils/SwapRectangles";
+import { ColorRectangle } from "../Utils/ColorRectangle";
+export const MergeSort = async (data, p, r, speed) => {
     async function merge(data, p, q, r) {
         let n1 = q - p + 1 // Left sub-array size
         let n2 = r - q // Right sub-array size
@@ -8,11 +11,11 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
 
         for (let i = 0; i < n1; i++) {
             leftArray[i] = data[p + i]
-            colorRectangle(p+i, "red")
+            ColorRectangle(p+i, "red", speed)
         }
         for (let j = 0; j < n2; j++) {
             rightArray[j] = data[q + j + 1]
-            colorRectangle(q+j+1, "red")
+            ColorRectangle(q+j+1, "red", speed)
         }
 
         let i = 0
@@ -21,7 +24,7 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
         
         // problem when the yellow is equal to the red we are swapping
         while (i < n1 && j < n2) {
-            updateIterations()
+            //updateIterations()
             // color the two we are comparing
             //colorRectangle(data.indexOf(parseInt(leftArray[i])), "yellow")
             //await colorRectangle(data.indexOf(parseInt(rightArray[j])), "yellow")
@@ -33,14 +36,14 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
             else if (leftArray[i] < rightArray[j]) {
                 
                 //colorRectangle(k, "red")
-                await swapRectangles(k, data.indexOf(parseInt(leftArray[i])))
+                await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speed)
                 //colorRectangle(data.indexOf(parseInt[leftArray[i]]), "green")
                 //colorRectangle(k, "green")
                 i++
             }
             else {
                 //colorRectangle(k, "red")
-                await swapRectangles(k, data.indexOf(parseInt(rightArray[j])))
+                await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speed)
                 //colorRectangle(data.indexOf(parseInt[rightArray[j]]), "green")
                 //colorRectangle(k, "green")
                 j++
@@ -49,9 +52,9 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
         }
 
         while (i < n1) {
-            updateIterations()
+            //updateIterations()
             //colorRectangle(k, "red")
-            await swapRectangles(k, data.indexOf(parseInt(leftArray[i])))
+            await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speed)
             //colorRectangle(data.indexOf(parseInt[leftArray[i]]), "green")
             //colorRectangle(k, "green")
             i++
@@ -59,9 +62,9 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
         }
 
         while (j < n2) {
-            updateIterations()
+            //updateIterations()
             //colorRectangle(k, "red")
-            await swapRectangles(k, data.indexOf(parseInt(rightArray[j])))
+            await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speed)
             //colorRectangle(data.indexOf(parseInt[rightArray[j]]), "green")
             //colorRectangle(k, "green")
             j++
@@ -69,17 +72,17 @@ export const MergeSort = async (data, p, r, swapRectangles, colorRectangle, upda
         }
         for (let i = 0; i < n1; i++) {
             leftArray[i] = data[p + i]
-            colorRectangle(p+i, "black")
+            ColorRectangle(p+i, "#2196f3", speed)
         }
         for (let j = 0; j < n2; j++) {
             rightArray[j] = data[q + j + 1]
-            colorRectangle(q+j+1, "black")
+            ColorRectangle(q+j+1, "#2196f3", speed)
         }
     }
     if (p >= r) { return; }
     let middle = Math.floor((p + r) / 2);
-    await MergeSort(data, p, middle, swapRectangles, colorRectangle, updateIterations)
-    await MergeSort(data, middle + 1, r, swapRectangles, colorRectangle, updateIterations)
+    await MergeSort(data, p, middle, speed)
+    await MergeSort(data, middle + 1, r, speed)
     await merge(data, p, middle, r)
 
 }
