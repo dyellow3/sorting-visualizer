@@ -2,7 +2,7 @@
 import { LoadChart } from './Components/Utils/LoadChart';
 import { SwapRectangles } from './Components/Utils/SwapRectangles';
 import { ColorRectangle } from './Components/Utils/ColorRectangle';
-import D3Chart from './Components/D3Chart/D3Chart'
+import D3Chart from './Components/D3Chart'
 import Navbar from './Components/Navbar'
 import React, { useRef, useState } from 'react';
 import { shuffle } from 'd3';

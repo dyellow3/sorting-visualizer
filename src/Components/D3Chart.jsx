@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { LoadChart } from '../Utils/LoadChart';
+import { LoadChart } from './Utils/LoadChart';
 
 const D3Chart = ({ svgRef, data }) => {
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
