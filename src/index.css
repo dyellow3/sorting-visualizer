@@ -22,15 +22,41 @@ body {
 #root {
   width: 100%;
   display: grid;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: min-content 1fr 50px;
   justify-content: center;
   margin: 0 auto;
-  padding: 2rem;
+  padding-bottom: 2rem;  
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  min-height: 19rem;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 #chart {
-  display: grid;
+  display: flex;
+  width: max(40%, 22rem);
+  justify-content: center;
+  align-items: center;
+}
+
+svg {
   width: 100%;
+}
+
+.sortCode {
+  width: clamp(22rem, 25%, 30%); /* responsive width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.iterationCount {
+  width: clamp(22rem, 25%, 30%); /* responsive width */
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -42,8 +68,11 @@ body {
 .Navbar {
   display: flex;
   align-items: center;
-  width: 90vw;
-  justify-content: space-between;
+  width: 100vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 
@@ -52,11 +81,5 @@ body {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }

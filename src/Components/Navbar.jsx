@@ -6,7 +6,7 @@ import { LoadChart } from './Utils/LoadChart';
 import { Button, ButtonGroup, Slider } from '@mui/material';
 import { shuffle } from 'd3';
 
-const Navbar = ({ speed, setSpeed, svgRef, data, setData, dataSize, setDataSize, sort, setSort, sortStatus, setSortStatus }) => {
+const Navbar = ({ iterations, setIterations, speed, setSpeed, svgRef, data, setData, dataSize, setDataSize, sort, setSort, sortStatus, setSortStatus }) => {
 
     const handleRandomize = () => {
         setData(shuffle(data))
@@ -19,11 +19,11 @@ const Navbar = ({ speed, setSpeed, svgRef, data, setData, dataSize, setDataSize,
             //setIterations(0)
             setSortStatus(true);
             if (sort === 'Selection') {
-                await SelectionSort(data, speed)
+                await SelectionSort(data, speed, setIterations)
             }
             else if (sort === 'Merge') {
                 // took out update iteations from both
-                await MergeSort(data, 0, data.length - 1, speed)
+                await MergeSort(data, 0, data.length - 1, speed, setIterations)
             }
             setSortStatus(false);
         }

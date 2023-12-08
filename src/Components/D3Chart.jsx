@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { LoadChart } from './Utils/LoadChart';
 
+import { CHART_HEIGHT, CHART_WIDTH } from './config';
+
 const D3Chart = ({ svgRef, data }) => {
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-  const width = 460;
-  const height = 410;
-  const barWidth = (width - 50) / data.length;
-  const barHeight = (height - 10) / data.length;
+  
+  const barWidth = (CHART_WIDTH - 50) / data.length;
+  const barHeight = (CHART_HEIGHT - 10) / data.length;
 
  
 
@@ -15,7 +16,7 @@ const D3Chart = ({ svgRef, data }) => {
   // Initial setup/load of the chart
   useEffect(() => {
     LoadChart(data, svgRef);
-  }, [data, barWidth, barHeight, height]);
+  }, [data, barWidth, barHeight,  CHART_HEIGHT]);
 
 
   // removed, need to replace
@@ -34,7 +35,7 @@ const updateIterations = () => {
  
   return (
       <div id="chart">
-        <svg ref={svgRef} width={width} height={height + margin.top + margin.bottom} />
+        <svg ref={svgRef} width={CHART_WIDTH} height={CHART_HEIGHT + margin.top + margin.bottom} />
       </div>
   );
 

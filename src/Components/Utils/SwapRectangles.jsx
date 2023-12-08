@@ -1,12 +1,10 @@
 import * as d3 from 'd3';
-
+import { CHART_HEIGHT, CHART_WIDTH } from '../config';
 export const SwapRectangles = (index1, index2, data, speed) => {
     return new Promise(async resolve => {
         // Swap values in the data array
-        const width = 460;
-        const height = 410;
-        const barWidth = (width - 50) / data.length;
-        const barHeight = (height - 10) / data.length;
+        const barWidth = (CHART_WIDTH - 50) / data.length;
+        const barHeight = (CHART_HEIGHT - 10) / data.length;
         const temp = data[index1]
         data[index1] = data[index2]
         data[index2] = temp
@@ -21,7 +19,7 @@ export const SwapRectangles = (index1, index2, data, speed) => {
         d3.select('rect[index="' + index1 + '"]')
             .transition()
             .duration(speed * 100 + 50)
-            .attr("y", d => height - barHeight * (d + 1))
+            .attr("y", d => CHART_HEIGHT - barHeight * (d + 1))
             .attr("height", d => barHeight * (d + 1))
             .attr("transform", () => {
                 const translate = [(barWidth + 50 / (data.length + 1)) * realIndex2 + 50 / data.length, 5];
@@ -32,7 +30,7 @@ export const SwapRectangles = (index1, index2, data, speed) => {
         d3.select('rect[index="' + index2 + '"]')
             .transition()
             .duration(speed * 100 + 50)
-            .attr("y", d => height - barHeight * (d + 1))
+            .attr("y", d => CHART_HEIGHT - barHeight * (d + 1))
             .attr("height", d => barHeight * (d + 1))
             .attr("transform", () => {
                 const translate = [(barWidth + 50 / (data.length + 1)) * realIndex1 + 50 / data.length, 5];
@@ -43,6 +41,6 @@ export const SwapRectangles = (index1, index2, data, speed) => {
         // Add a delay after swapping
         setTimeout(() => {
             resolve()
-        }, speed * 100 + 75) // duration takes speed*100 + 50, make sure enough time
+        }, speed * 100 + 75) // +75 TO make sure enough time
     })
 }

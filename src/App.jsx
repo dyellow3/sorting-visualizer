@@ -4,6 +4,8 @@ import { SwapRectangles } from './Components/Utils/SwapRectangles';
 import { ColorRectangle } from './Components/Utils/ColorRectangle';
 import D3Chart from './Components/D3Chart'
 import Navbar from './Components/Navbar'
+import IterationCount from './Components/IterationCount';
+import { SortingCode } from './Components/SortingCode';
 import React, { useRef, useState } from 'react';
 import { shuffle } from 'd3';
 
@@ -17,8 +19,13 @@ function App() {
   const [speed, setSpeed] = useState(0.1)
   return (
     <>
-      <Navbar speed={speed} setSpeed={setSpeed} svgRef={svgRef} data={data} setData={setData} dataSize={dataSize} setDataSize={setDataSize} sort={sort} setSort={setSort} sortStatus={sortStatus} setSortStatus={setSortStatus}/>
-      <D3Chart svgRef={svgRef} data={data} />
+      <Navbar iterations={iterations} setIterations={setIterations} speed={speed} setSpeed={setSpeed} svgRef={svgRef} data={data} setData={setData} dataSize={dataSize} setDataSize={setDataSize} sort={sort} setSort={setSort} sortStatus={sortStatus} setSortStatus={setSortStatus} />
+      <div className="container">
+        <SortingCode sort={sort}/>
+        <D3Chart svgRef={svgRef} data={data} />
+        <IterationCount iterations={iterations}/>
+      </div>
+
     </>
   )
 }
