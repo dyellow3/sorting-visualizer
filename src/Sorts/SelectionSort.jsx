@@ -1,6 +1,6 @@
 import { SwapRectangles } from "../Utils/SwapRectangles";
 import { ColorRectangle } from "../Utils/ColorRectangle";
-import { PRIMARY_COLOR } from "../config";
+import { PRIMARY_COLOR } from "../Components/config";
 // Selection sort finds the minIndex, then swaps it to the front
 // took out update iteations from both
 export const SelectionSort = async (data, speed, setIterations) => {

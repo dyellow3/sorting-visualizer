@@ -1,7 +1,7 @@
 // took out update iteations from both
 import { SwapRectangles } from "../Utils/SwapRectangles";
 import { ColorRectangle } from "../Utils/ColorRectangle";
-import { PRIMARY_COLOR } from "../config";
+import { PRIMARY_COLOR } from "../Components/config";
 export const MergeSort = async (data, p, r, speed, setIterations) => {
     async function merge(data, p, q, r) {
         let n1 = q - p + 1 // Left sub-array size
