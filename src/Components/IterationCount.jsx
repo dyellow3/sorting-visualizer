@@ -1,9 +1,7 @@
-const IterationCount = (iterations) => {
-
-    
+const IterationCount = (iterations) => { 
     return (
         <div className="iterationCount">
-            <h1>{iterations.iterations}</h1>
+            {iterations.iterations} ITERATIONS
         </div>
     )
 }
