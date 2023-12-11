@@ -25,7 +25,7 @@ const build_max_heap = async (data, speed, setIterations) => {
         for (var i = Math.floor(data.length / 2); i >= 0; i--) {
             await max_heapify(data, i, speed, data.length, setIterations)
         }
-        // Add a delay after swapping
+        // Add a delay after building max heap
         setTimeout(() => {
             resolve();
         }, speed * 25 + 500)
