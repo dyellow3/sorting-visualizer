@@ -1,6 +1,5 @@
-
-import { CopyBlock, CodeBlock } from 'react-code-blocks';
-
+import { CodeBlock } from 'react-code-blocks';
+import './SortingCode.css'
 
 export const SortingCode = ({ sort }) => {
     let code;
@@ -60,20 +59,55 @@ function merge(arr, left, middle, right) {
 
         case 'Selection':
             code = 
-            `function selectionSort(arr) {
-        var n = arr.length
-        for(var i = 0; i < n; i++) {
-            var minIndex = 0
-        }
-            for(var j = i+1; j < n; j++) {
-                if arr[j] < arr[minIndex] {
-                    minIndex = j
-                    swap(arr[i], arr[minIndex])
-                }
+`function selectionSort(arr) {
+    var n = arr.length
+    for(var i = 0; i < n; i++) {
+        var minIndex = 0
+        for(var j = i+1; j < n; j++) {
+            if arr[j] < arr[minIndex] {
+                minIndex = j
+                swap(arr[i], arr[minIndex])
             }
-    }`
+        }
+    }
+}`
             break
+        
+        case 'HeapSort': 
+            code =
+`function heapSort(arr) {
+    // Build a max heap
+    buildMaxHeap(arr)
+    // then repeatedly get swap first and last
+    for(var i = arr.length-1; i > 0; i--) {
+        // Notice i as the length parameter
+        maxHeapify(arr, 0, i)
+    }
+}
 
+function buildMaxHeap(arr) {
+    for(var i = Math.floor(arr.length/2); i >= 0; i--) {
+        maxHeapify(arr, i, arr.length)
+    }
+}
+
+// Moves index to its correct position 
+// which satisfies the max heap property
+function maxHeapify(arr, index, length) {
+    var max = index
+    var leftChild = index*2+1
+    var rightChild = index*2+2
+    if(leftChild<length && arr[leftChild] > data[max]) {
+        max = leftChild
+    }
+    if(rightChild<length && arr[rightChild] > data[max]) {
+        max = rightChild
+    }
+    if(max != index) {
+        maxHeapify(arr, max, length)
+    }
+}`
+            break
         default:
             code = <div>No code available for the selected sort type</div>
             break

@@ -1,0 +1,37 @@
+.Navbar {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/*Sliders*/
+.MuiSlider-root {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.sliders {
+    min-width: min-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.dataSizeSlider,
+.speedSlider {
+    display: flex;
+    width: 300px;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px;
+
+    font-size: 20px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    color: #0d47a1;
+}

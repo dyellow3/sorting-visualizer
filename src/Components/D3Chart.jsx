@@ -12,9 +12,7 @@ const D3Chart = ({ svgRef, data }) => {
   // Add 20 to height for margin
   return (
       <svg ref={svgRef} width={CHART_WIDTH} height={CHART_HEIGHT + 20} />
-      
   );
-
 };
 
 export default D3Chart;

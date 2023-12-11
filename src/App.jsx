@@ -1,9 +1,9 @@
 
 import D3Chart from './Components/D3Chart'
-import Navbar from './Components/Navbar'
-import IterationCount from './Components/IterationCount';
+import Navbar from './Components/Navbar/Navbar';
+import IterationCount from './Components/IterationCount/IterationCount';
 import ChartButtons from './Components/ChartButtons';
-import { SortingCode } from './Components/SortingCode';
+import { SortingCode } from './Components/SortingCode/SortingCode';
 import React, { useRef, useState } from 'react';
 import { shuffle } from 'd3';
 

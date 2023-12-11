@@ -1,3 +1,5 @@
+import './IterationCount.css'
+
 const IterationCount = (iterations) => { 
     return (
         <div className="iterationCount">

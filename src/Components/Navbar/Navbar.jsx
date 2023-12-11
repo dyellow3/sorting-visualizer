@@ -1,10 +1,8 @@
 // Navbar lets the user select from the various sorts that are implemented
 // When a sort is clicked, it should change the state of the D3Chart sort ?
-import { SelectionSort } from '../Sorts/SelectionSort';
-import { MergeSort } from '../Sorts/MergeSort';
-import { LoadChart } from '../Utils/LoadChart';
 import { Button, ButtonGroup, Slider } from '@mui/material';
 import { shuffle } from 'd3';
+import './Navbar.css';
 
 const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus }) => {
     const handleSpeedChange = (event, newValue) => {
@@ -48,6 +46,7 @@ const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort
             <ButtonGroup variant="outlined" aria-label="outlined button group">
                 <Button disabled={sortStatus} onClick={() => setSort('Merge')} variant={sort === 'Merge' ? 'contained' : 'outlined'}>Merge</Button>
                 <Button disabled={sortStatus} onClick={() => setSort('Selection')} variant={sort === 'Selection' ? 'contained' : 'outlined'}>Selection</Button>
+                <Button disabled={sortStatus} onClick={() => setSort('HeapSort')} variant={sort === 'HeapSort' ? 'contained' : 'outlined'}>HeapSort</Button>
             </ButtonGroup>
         </div>
     )

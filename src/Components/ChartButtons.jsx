@@ -1,5 +1,6 @@
 import { SelectionSort } from "../Sorts/SelectionSort"
 import { MergeSort } from "../Sorts/MergeSort"
+import HeapSort from "../Sorts/HeapSort"
 import { shuffle } from "d3"
 import { ButtonGroup, Button } from "@mui/material"
 import { LoadChart } from "../Utils/LoadChart"
@@ -21,6 +22,9 @@ const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, s
             else if (sort === 'Merge') {
                 // took out update iteations from both
                 await MergeSort(data, 0, data.length - 1, speed, setIterations)
+            }
+            else if (sort === 'HeapSort') {
+                await HeapSort(data, speed, setIterations)
             }
             setSortStatus(false);
         }
