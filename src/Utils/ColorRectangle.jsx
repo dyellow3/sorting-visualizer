@@ -6,6 +6,6 @@ export const ColorRectangle = (index, color, speed) => {
         .attr('fill', `${color}`)
       setTimeout(() => {
         resolve()
-      }, speed * 50)
+      }, speed * 30)
     })
 }
