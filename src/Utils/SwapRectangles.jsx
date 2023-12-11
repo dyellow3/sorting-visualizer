@@ -1,46 +1,36 @@
 import * as d3 from 'd3';
-import { CHART_HEIGHT, CHART_WIDTH } from '../Components/config';
+
 export const SwapRectangles = (index1, index2, data, speed) => {
-    return new Promise(async resolve => {
-        // Swap values in the data array
-        const barWidth = (CHART_WIDTH - 50) / data.length;
-        const barHeight = (CHART_HEIGHT - 10) / data.length;
+    return new Promise((resolve) => {
         const temp = data[index1]
         data[index1] = data[index2]
         data[index2] = temp
+        
+        const rect1 = d3.select('rect[index="' + index1 + '"]');
+        const rect2 = d3.select('rect[index="' + index2 + '"]');
+
+        // Get the y and height values for the rectangles
+        const y1 = parseFloat(rect1.attr('y'));
+        const height1 = parseFloat(rect1.attr('height'));
+        const y2 = parseFloat(rect2.attr('y'));
+        const height2 = parseFloat(rect2.attr('height'));
 
         // Swap rectangles visually
-        // This code handles this swap visualization 
-        // Need to get the real index of the rectangle in the chart, not data array
-        const realIndex1 = parseInt(d3.select('rect[index="' + index1 + '"]').attr("index"));
-        const realIndex2 = parseInt(d3.select('rect[index="' + index2 + '"]').attr("index"));
-
-        //var rect1 = d3.select('rect[index="' + index1 + '"]')
-        d3.select('rect[index="' + index1 + '"]')
+        rect1
             .transition()
             .duration(speed * 100 + 50)
-            .attr("y", d => CHART_HEIGHT - barHeight * (d + 1))
-            .attr("height", d => barHeight * (d + 1))
-            .attr("transform", () => {
-                const translate = [(barWidth + 50 / (data.length + 1)) * realIndex2 + 50 / data.length, 5];
-                return "translate(" + translate + ")";
-            })
-            .attr("index", String(realIndex2));
+            .attr('y', y2)
+            .attr('height', height2);
 
-        d3.select('rect[index="' + index2 + '"]')
+        rect2
             .transition()
             .duration(speed * 100 + 50)
-            .attr("y", d => CHART_HEIGHT - barHeight * (d + 1))
-            .attr("height", d => barHeight * (d + 1))
-            .attr("transform", () => {
-                const translate = [(barWidth + 50 / (data.length + 1)) * realIndex1 + 50 / data.length, 5];
-                return "translate(" + translate + ")";
-            })
-            .attr("index", String(realIndex1));
+            .attr('y', y1)
+            .attr('height', height1);
 
         // Add a delay after swapping
         setTimeout(() => {
-            resolve()
-        }, speed * 100 + 75) // +75 TO make sure enough time
-    })
-}
+            resolve();
+        }, speed * 100 + 75); // +75 to make sure enough time
+    });
+};
