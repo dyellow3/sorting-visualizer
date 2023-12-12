@@ -1,11 +1,7 @@
 import * as d3 from 'd3';
-import { CHART_WIDTH, CHART_HEIGHT } from '../Components/config';
 
 export const SwapRectangles = (index1, index2, data, speed) => {
     return new Promise((resolve) => {
-        const barWidth = (CHART_WIDTH - 50) / data.length;
-        const barHeight = (CHART_HEIGHT - 10) / data.length;
-
         const temp = data[index1];
         data[index1] = data[index2];
         data[index2] = temp;
