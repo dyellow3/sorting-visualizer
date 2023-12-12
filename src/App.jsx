@@ -6,7 +6,8 @@ import ChartButtons from './Components/ChartButtons';
 import { SortingCode } from './Components/SortingCode/SortingCode';
 import React, { useRef, useState } from 'react';
 import { shuffle } from 'd3';
-
+import { ThemeProvider, createTheme } from '@mui/material';
+import { lightGreen } from '@mui/material/colors';
 function App() {
   const svgRef = useRef();
 
@@ -26,20 +27,28 @@ function App() {
   const chartButtonProps = {
     data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speed
   }
-  
+
+  const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#76ff03',
+        },
+    },
+
+  });
   return (
     <>
-      <Navbar {...navbarProps}/>
-      <div className="container">
-        <div id="chart">
-          <D3Chart svgRef={svgRef} data={data} />
-          <ChartButtons {...chartButtonProps}></ChartButtons>
-          <IterationCount iterations={iterations}/>
+      <ThemeProvider theme={theme}>
+        <Navbar {...navbarProps} />
+        <div className="container">
+          <div id="chart">
+            <D3Chart svgRef={svgRef} data={data} />
+            <ChartButtons {...chartButtonProps}></ChartButtons>
+            <IterationCount iterations={iterations} />
+          </div>
+          {/*<SortingCode sort={sort} />*/}
         </div>
-        <SortingCode sort={sort}/>
-        
-      </div>
-
+      </ThemeProvider>
     </>
   )
 }
