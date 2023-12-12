@@ -32,6 +32,7 @@ const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort
                 </div>
                 <div className="speedSlider">
                     Speed
+
                     <Slider
                         disabled={sortStatus}
                         value={speed}
@@ -41,6 +42,8 @@ const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort
                         max={11}
                         onChange={handleSpeedChange}
                     />
+
+
                 </div>
             </div>
             <ButtonGroup variant="outlined" aria-label="outlined button group">

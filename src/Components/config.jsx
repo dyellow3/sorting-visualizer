@@ -1,6 +1,6 @@
-export const PRIMARY_COLOR = '#2196f3';
-export const SORT_COLOR = 'red';
-export const SECONDARY_SORT_COLOR = 'pink';
+export const PRIMARY_COLOR = '#fafafa';
+export const SORT_COLOR = '#76ff03';
+export const SECONDARY_SORT_COLOR = '#ccff90';
 
 // Need a way for these to be flexible
 // these are used in LoadChart, SwapRectangles, and D3Chart

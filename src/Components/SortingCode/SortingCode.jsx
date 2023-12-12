@@ -1,4 +1,4 @@
-import { CodeBlock } from 'react-code-blocks';
+import { CodeBlock, obsidian } from 'react-code-blocks';
 import './SortingCode.css'
 
 export const SortingCode = ({ sort }) => {
@@ -119,8 +119,8 @@ function maxHeapify(arr, index, length) {
             <CodeBlock
                 text={code}
                 language='javascript'
-                showLineNumbers={true}
-                theme='atom-one-dark'
+                showLineNumbers={false}
+                theme={obsidian}
                 customStyle={{
                     overflow: 'auto',
                     height: 'min-content',

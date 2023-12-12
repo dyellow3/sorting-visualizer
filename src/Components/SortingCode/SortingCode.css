@@ -11,11 +11,11 @@
     height: 3px;
   }
   .sortCode span::-webkit-scrollbar-thumb {
-    background-color: grey; /* Set the color of the scrollbar thumb */
+    background-color: #76ff03; /* Set the color of the scrollbar thumb */
     border-radius: 5px; /* Set the border radius of the thumb */
   }
   
   .sortCode span::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Set the color of the scrollbar track */
+    background-color: black; /* Set the color of the scrollbar track */
   }
   

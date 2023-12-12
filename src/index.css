@@ -12,6 +12,8 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #080808;
+  color: #76ff03;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -44,12 +46,3 @@ body {
   align-items: center;
 }
 
-
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-}
