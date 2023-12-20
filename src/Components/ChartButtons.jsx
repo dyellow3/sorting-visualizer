@@ -2,7 +2,7 @@ import { SelectionSort } from "../Sorts/SelectionSort"
 import { MergeSort } from "../Sorts/MergeSort"
 import HeapSort from "../Sorts/HeapSort"
 import { shuffle } from "d3"
-import { ButtonGroup, Button } from "@mui/material"
+import { ButtonGroup, Button, ToggleButton } from "@mui/material"
 import { LoadChart } from "../Utils/LoadChart"
 
 const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speed}) => {
