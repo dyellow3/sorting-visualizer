@@ -12,16 +12,7 @@
 
 ## Local Testing
 
-### Prerequisites
-
-Make sure you have the following software installed on your machine:
-
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
-### Installation
-
-1. Clone the repository to your local machine:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/dyellow3/sorting-visualizer.git
