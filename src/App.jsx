@@ -7,18 +7,16 @@ import { shuffle } from 'd3';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 function App() {
-  const svgRef = useRef();
-
   const [sort, setSort] = useState('Merge')
   const [sortStatus, setSortStatus] = useState(false)
-
   const [data, setData] = useState(shuffle([...Array(10).keys()]))
   const [dataSize, setDataSize] = useState(10)
-
   const [iterations, setIterations] = useState(0)
-  const [speed, setSpeed] = useState(0.1)
+  const [speed, setSpeed] = useState(5.2)
 
+  const svgRef = useRef();
   const speedRef = useRef(speed)
+  const sortStatusRef = useRef(false);
   
   const updateSpeed = useCallback((newSpeed) => {
     setSpeed(newSpeed);
@@ -28,11 +26,11 @@ function App() {
   const getSpeed = useCallback(() => speed, [speed])
 
   const navbarProps = {
-    speed, dataSize, setDataSize, sort, setSort, sortStatus, updateSpeed, getSpeed
+    getSpeed, updateSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus
   }
 
   const chartButtonProps = {
-    data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef
+    data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef, sortStatusRef
   }
 
   const theme = createTheme({

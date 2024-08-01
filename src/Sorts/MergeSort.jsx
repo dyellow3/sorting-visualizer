@@ -1,9 +1,8 @@
-// took out update iteations from both
 import { SwapRectangles } from "../Utils/SwapRectangles";
 import { ColorRectangle } from "../Utils/ColorRectangle";
 import { PRIMARY_COLOR, SORT_COLOR } from "../Components/config";
-export const MergeSort = async (data, p, r, speedRef, setIterations) => {
-    async function merge(data, p, q, r) {
+export const MergeSort = async (data, p, r, speedRef, setIterations, sortStatusRef) => {
+    async function merge(data, p, q, r, sortStatusRef) {
         let n1 = q - p + 1 // Left sub-array size
         let n2 = r - q // Right sub-array size
 
@@ -50,6 +49,8 @@ export const MergeSort = async (data, p, r, speedRef, setIterations) => {
                 j++
             }
             k++
+
+            if(!sortStatusRef.current) return
         }
 
         while (i < n1) {
@@ -60,6 +61,7 @@ export const MergeSort = async (data, p, r, speedRef, setIterations) => {
             //colorRectangle(k, "green")
             i++
             k++
+            if(!sortStatusRef.current) return
         }
 
         while (j < n2) {
@@ -70,6 +72,7 @@ export const MergeSort = async (data, p, r, speedRef, setIterations) => {
             //colorRectangle(k, "green")
             j++
             k++
+            if(!sortStatusRef.current) return
         }
         for (let i = 0; i < n1; i++) {
             leftArray[i] = data[p + i]
@@ -82,9 +85,10 @@ export const MergeSort = async (data, p, r, speedRef, setIterations) => {
     }
 
     if (p >= r) { return; }
+    if(!sortStatusRef.current) return
     let middle = Math.floor((p + r) / 2);
-    await MergeSort(data, p, middle, speedRef, setIterations)
-    await MergeSort(data, middle + 1, r, speedRef, setIterations)
-    await merge(data, p, middle, r)
+    await MergeSort(data, p, middle, speedRef, setIterations, sortStatusRef)
+    await MergeSort(data, middle + 1, r, speedRef, setIterations, sortStatusRef)
+    await merge(data, p, middle, r, sortStatusRef)
 
 }

@@ -1,5 +1,3 @@
-// Navbar lets the user select from the various sorts that are implemented
-// When a sort is clicked, it should change the state of the D3Chart sort ?
 import { Button, ButtonGroup, Slider } from '@mui/material';
 import { shuffle } from 'd3';
 import './Navbar.css';
@@ -7,7 +5,7 @@ import './Navbar.css';
 const Navbar = ({ getSpeed, updateSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus }) => {
     const handleSpeedChange = (event, newValue) => {
         if (typeof newValue === 'number') {
-            updateSpeed(newValue)
+            updateSpeed(10.2 - newValue)
         }
     }
 
@@ -33,11 +31,11 @@ const Navbar = ({ getSpeed, updateSpeed, setData, dataSize, setDataSize, sort, s
                 <div className="speedSlider">
                     Speed
                     <Slider
-                        value={getSpeed()}
+                        value={10.2 - getSpeed()}
                         aria-label="Temperature"
-                        step={1}
-                        min={1}
-                        max={11}
+                        step={0.5}
+                        min={0.2}
+                        max={10.2}
                         onChange={handleSpeedChange}
                     />
                 </div>

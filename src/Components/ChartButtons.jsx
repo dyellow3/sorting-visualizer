@@ -4,35 +4,54 @@ import HeapSort from "../Sorts/HeapSort"
 import { shuffle } from "d3"
 import { ButtonGroup, Button } from "@mui/material"
 import { LoadChart } from "../Utils/LoadChart"
+import { ColorRectangle } from "../Utils/ColorRectangle";
+import { PRIMARY_COLOR } from "../Components/config";
 
-const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef}) => {
+const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef, sortStatusRef}) => {
     const handleRandomize = () => {
         setData(shuffle(data))
         LoadChart(data, svgRef)
     }
 
     const handleSort = async () => {
-        // !! Update !!
         if (!sortStatus) {
             setIterations(0)
             setSortStatus(true)
+            sortStatusRef.current = true
             if (sort === 'Selection') {
-                await SelectionSort(data, speedRef, setIterations)
+                await SelectionSort(data, speedRef, setIterations, sortStatusRef)
             }
             else if (sort === 'Merge') {
-                await MergeSort(data, 0, data.length - 1, speedRef, setIterations)
+                await MergeSort(data, 0, data.length - 1, speedRef, setIterations, sortStatusRef)
             }
             else if (sort === 'HeapSort') {
-                await HeapSort(data, speedRef, setIterations)
+                console.log("STATUS" + sortStatusRef.current)
+                await HeapSort(data, speedRef, setIterations, sortStatusRef)
             }
             setSortStatus(false);
+            sortStatusRef.current = false
+            // Reset colors
+            data.forEach((_, index) => {
+                ColorRectangle(index, PRIMARY_COLOR, speedRef);
+            });
         }
+    }
+
+    const handleStop = () => {
+        setSortStatus(false)
+        sortStatusRef.current = false
     }
 
     return <>
         <ButtonGroup variant="outlined" aria-label="outlined button group">
-            <Button disabled={sortStatus} onClick={handleRandomize}>Randomize</Button>
-            <Button disabled={sortStatus} onClick={handleSort}>Sort</Button>
+        {sortStatus ? (
+                <Button onClick={handleStop}>Stop</Button>
+            ) : (
+                <>
+                    <Button onClick={handleRandomize}>Randomize</Button>
+                    <Button onClick={handleSort}>Sort</Button>
+                </>
+            )}
         </ButtonGroup>
     </>
 }
