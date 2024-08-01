@@ -1,11 +1,13 @@
-import './IterationCount.css'
+import './IterationCount.css';
 
-const IterationCount = (iterations) => { 
-    return (
-        <div className="iterationCount">
-            {iterations.iterations} ITERATIONS
-        </div>
-    )
+function IterationCount(iterations) {
+  return (
+    <div className="iterationCount">
+      {iterations.iterations}
+      {' '}
+      ITERATIONS
+    </div>
+  );
 }
 
-export default IterationCount
+export default IterationCount;

@@ -1,94 +1,78 @@
-import { SwapRectangles } from "../Utils/SwapRectangles";
-import { ColorRectangle } from "../Utils/ColorRectangle";
-import { PRIMARY_COLOR, SORT_COLOR } from "../Components/config";
+import { SwapRectangles } from '../Utils/SwapRectangles';
+import { ColorRectangle } from '../Utils/ColorRectangle';
+import { PRIMARY_COLOR, SORT_COLOR } from '../Components/config';
+
 export const MergeSort = async (data, p, r, speedRef, setIterations, sortStatusRef) => {
-    async function merge(data, p, q, r, sortStatusRef) {
-        let n1 = q - p + 1 // Left sub-array size
-        let n2 = r - q // Right sub-array size
+  async function merge(data, p, q, r, sortStatusRef) {
+    const n1 = q - p + 1; // Left sub-array size
+    const n2 = r - q; // Right sub-array size
 
-        let leftArray = new Array(n1)
-        let rightArray = new Array(n2)
+    const leftArray = new Array(n1);
+    const rightArray = new Array(n2);
 
-        for (let i = 0; i < n1; i++) {
-            leftArray[i] = data[p + i]
-            ColorRectangle(p+i, `${SORT_COLOR}`, speedRef)
-        }
-        for (let j = 0; j < n2; j++) {
-            rightArray[j] = data[q + j + 1]
-            ColorRectangle(q+j+1, `${SORT_COLOR}`, speedRef)
-        }
-
-        let i = 0
-        let j = 0
-        let k = p;
-        
-        // problem when the yellow is equal to the red we are swapping
-        while (i < n1 && j < n2) {
-            setIterations((prevIterations) => prevIterations + 1)
-            // color the two we are comparing
-            //colorRectangle(data.indexOf(parseInt(leftArray[i])), "yellow")
-            //await colorRectangle(data.indexOf(parseInt(rightArray[j])), "yellow")
-
-            if(leftArray[i] === rightArray[j]) {
-            }
-
-        
-            else if (leftArray[i] < rightArray[j]) {
-                
-                //colorRectangle(k, `${SORT_COLOR}`)
-                await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speedRef)
-                //colorRectangle(data.indexOf(parseInt[leftArray[i]]), "green")
-                //colorRectangle(k, "green")
-                i++
-            }
-            else {
-                //colorRectangle(k, `${SORT_COLOR}`)
-                await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speedRef)
-                //colorRectangle(data.indexOf(parseInt[rightArray[j]]), "green")
-                //colorRectangle(k, "green")
-                j++
-            }
-            k++
-
-            if(!sortStatusRef.current) return
-        }
-
-        while (i < n1) {
-            setIterations((prevIterations) => prevIterations + 1)
-            //colorRectangle(k, `${SORT_COLOR}`)
-            await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speedRef)
-            //colorRectangle(data.indexOf(parseInt[leftArray[i]]), "green")
-            //colorRectangle(k, "green")
-            i++
-            k++
-            if(!sortStatusRef.current) return
-        }
-
-        while (j < n2) {
-            setIterations((prevIterations) => prevIterations + 1)
-            //colorRectangle(k, `${SORT_COLOR}`)
-            await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speedRef)
-            //colorRectangle(data.indexOf(parseInt[rightArray[j]]), "green")
-            //colorRectangle(k, "green")
-            j++
-            k++
-            if(!sortStatusRef.current) return
-        }
-        for (let i = 0; i < n1; i++) {
-            leftArray[i] = data[p + i]
-            ColorRectangle(p+i, `${PRIMARY_COLOR}`, speedRef)
-        }
-        for (let j = 0; j < n2; j++) {
-            rightArray[j] = data[q + j + 1]
-            ColorRectangle(q+j+1, `${PRIMARY_COLOR}`, speedRef)
-        }
+    for (let i = 0; i < n1; i++) {
+      if (!sortStatusRef.current) return;
+      leftArray[i] = data[p + i];
+      ColorRectangle(p + i, SORT_COLOR, speedRef);
+    }
+    if (!sortStatusRef.current) return;
+    for (let j = 0; j < n2; j++) {
+      rightArray[j] = data[q + j + 1];
+      ColorRectangle(q + j + 1, SORT_COLOR, speedRef);
     }
 
-    if (p >= r) { return; }
-    if(!sortStatusRef.current) return
-    let middle = Math.floor((p + r) / 2);
-    await MergeSort(data, p, middle, speedRef, setIterations, sortStatusRef)
-    await MergeSort(data, middle + 1, r, speedRef, setIterations, sortStatusRef)
-    await merge(data, p, middle, r, sortStatusRef)
+    let i = 0;
+    let j = 0;
+    let k = p;
 
-}
+    while (i < n1 && j < n2) {
+      if (!sortStatusRef.current) return;
+
+      setIterations((prevIterations) => prevIterations + 1);
+
+      if (leftArray[i] != rightArray[j]) {
+        if (leftArray[i] < rightArray[j]) {
+          await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speedRef);
+          i++;
+        } else {
+          await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speedRef);
+          j++;
+        }
+      }
+      k++;
+    }
+
+    while (i < n1) {
+      if (!sortStatusRef.current) return;
+
+      setIterations((prevIterations) => prevIterations + 1);
+      await SwapRectangles(k, data.indexOf(parseInt(leftArray[i])), data, speedRef);
+      i++;
+      k++;
+    }
+
+    while (j < n2) {
+      if (!sortStatusRef.current) return;
+      setIterations((prevIterations) => prevIterations + 1);
+      await SwapRectangles(k, data.indexOf(parseInt(rightArray[j])), data, speedRef);
+      j++;
+      k++;
+    }
+    for (let i = 0; i < n1; i++) {
+      if (!sortStatusRef.current) return;
+      leftArray[i] = data[p + i];
+      ColorRectangle(p + i, PRIMARY_COLOR, speedRef);
+    }
+    for (let j = 0; j < n2; j++) {
+      if (!sortStatusRef.current) return;
+      rightArray[j] = data[q + j + 1];
+      ColorRectangle(q + j + 1, PRIMARY_COLOR, speedRef);
+    }
+  }
+
+  if (p >= r || !sortStatusRef.current) return;
+  const middle = Math.floor((p + r) / 2);
+  await MergeSort(data, p, middle, speedRef, setIterations, sortStatusRef);
+  await MergeSort(data, middle + 1, r, speedRef, setIterations, sortStatusRef);
+  await merge(data, p, middle, r, sortStatusRef);
+};
