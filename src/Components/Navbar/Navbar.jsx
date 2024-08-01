@@ -4,10 +4,10 @@ import { Button, ButtonGroup, Slider } from '@mui/material';
 import { shuffle } from 'd3';
 import './Navbar.css';
 
-const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus }) => {
+const Navbar = ({ getSpeed, updateSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus }) => {
     const handleSpeedChange = (event, newValue) => {
         if (typeof newValue === 'number') {
-            setSpeed(newValue)
+            updateSpeed(newValue)
         }
     }
 
@@ -32,18 +32,14 @@ const Navbar = ({ speed, setSpeed, setData, dataSize, setDataSize, sort, setSort
                 </div>
                 <div className="speedSlider">
                     Speed
-
                     <Slider
-                        disabled={sortStatus}
-                        value={speed}
+                        value={getSpeed()}
                         aria-label="Temperature"
                         step={1}
                         min={1}
                         max={11}
                         onChange={handleSpeedChange}
                     />
-
-
                 </div>
             </div>
             <ButtonGroup variant="outlined" aria-label="outlined button group">

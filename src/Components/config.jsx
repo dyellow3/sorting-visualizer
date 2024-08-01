@@ -6,4 +6,3 @@ export const SECONDARY_SORT_COLOR = '#ccff90';
 // these are used in LoadChart, SwapRectangles, and D3Chart
 export var CHART_WIDTH = Math.max((window.innerWidth * 0.33), 22 * 16);
 export const CHART_HEIGHT =  410;
-

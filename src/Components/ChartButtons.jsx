@@ -2,10 +2,10 @@ import { SelectionSort } from "../Sorts/SelectionSort"
 import { MergeSort } from "../Sorts/MergeSort"
 import HeapSort from "../Sorts/HeapSort"
 import { shuffle } from "d3"
-import { ButtonGroup, Button, ToggleButton } from "@mui/material"
+import { ButtonGroup, Button } from "@mui/material"
 import { LoadChart } from "../Utils/LoadChart"
 
-const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speed}) => {
+const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef}) => {
     const handleRandomize = () => {
         setData(shuffle(data))
         LoadChart(data, svgRef)
@@ -15,16 +15,15 @@ const ChartButtons = ({data, setData, svgRef, sort, sortStatus, setSortStatus, s
         // !! Update !!
         if (!sortStatus) {
             setIterations(0)
-            setSortStatus(true);
+            setSortStatus(true)
             if (sort === 'Selection') {
-                await SelectionSort(data, speed, setIterations)
+                await SelectionSort(data, speedRef, setIterations)
             }
             else if (sort === 'Merge') {
-                // took out update iteations from both
-                await MergeSort(data, 0, data.length - 1, speed, setIterations)
+                await MergeSort(data, 0, data.length - 1, speedRef, setIterations)
             }
             else if (sort === 'HeapSort') {
-                await HeapSort(data, speed, setIterations)
+                await HeapSort(data, speedRef, setIterations)
             }
             setSortStatus(false);
         }

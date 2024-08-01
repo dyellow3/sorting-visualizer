@@ -1,13 +1,11 @@
-
 import D3Chart from './Components/D3Chart'
 import Navbar from './Components/Navbar/Navbar';
 import IterationCount from './Components/IterationCount/IterationCount';
 import ChartButtons from './Components/ChartButtons';
-import { SortingCode } from './Components/SortingCode/SortingCode';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { shuffle } from 'd3';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { lightGreen } from '@mui/material/colors';
+
 function App() {
   const svgRef = useRef();
 
@@ -20,12 +18,21 @@ function App() {
   const [iterations, setIterations] = useState(0)
   const [speed, setSpeed] = useState(0.1)
 
+  const speedRef = useRef(speed)
+  
+  const updateSpeed = useCallback((newSpeed) => {
+    setSpeed(newSpeed);
+    speedRef.current = newSpeed
+  }, []);
+
+  const getSpeed = useCallback(() => speed, [speed])
+
   const navbarProps = {
-    speed, setSpeed, setData, dataSize, setDataSize, sort, setSort, sortStatus
+    speed, dataSize, setDataSize, sort, setSort, sortStatus, updateSpeed, getSpeed
   }
 
   const chartButtonProps = {
-    data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speed
+    data, setData, svgRef, sort, sortStatus, setSortStatus, setIterations, speedRef
   }
 
   const theme = createTheme({
@@ -36,6 +43,7 @@ function App() {
     },
 
   });
+  
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -46,7 +54,6 @@ function App() {
             <ChartButtons {...chartButtonProps}></ChartButtons>
             <IterationCount iterations={iterations} />
           </div>
-          {/*<SortingCode sort={sort} />*/}
         </div>
       </ThemeProvider>
     </>

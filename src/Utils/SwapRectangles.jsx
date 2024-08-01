@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-export const SwapRectangles = (index1, index2, data, speed) => {
+export const SwapRectangles = (index1, index2, data, speedRef) => {
     return new Promise((resolve) => {
         const temp = data[index1];
         data[index1] = data[index2];
@@ -18,6 +18,7 @@ export const SwapRectangles = (index1, index2, data, speed) => {
         const index2Value = rect2.attr('index');
 
         // Swap rectangles visually by updating the transform attribute
+        const speed = speedRef.current;
         rect1
             .transition()
             .duration(speed * 100 + 50)
